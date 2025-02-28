@@ -7,7 +7,7 @@ dotenv.config({path:'./config.env'});
 
 const DB = process.env.DATABASE.replace('<PASSWORD>',process.env.DATABASE_PASSWORD);
 
-mongoose.connect(DB, {
+mongoose.connect(process.env.DATABASE_LOCAL, {
   useUnifiedTopology: true,   // Recommended for the new topology engine
   useNewUrlParser: true,      // This is still good for legacy compatibility, but optional in 6.x
   
@@ -22,8 +22,8 @@ mongoose.connect(DB, {
 
 
 // console.log(app.get('env'))
-
 // console.log(process.env);
+
 
 const port=process.env.PORT || 5000;
 

@@ -6,7 +6,7 @@ const tourController=require('./../controller/tourController');
 
 const router=express.Router(); 
 
-router.param('id',tourController.checkID);
+// router.param('id',tourController.checkID);
 
 // CHALLENGE 1
 
@@ -18,15 +18,16 @@ router.param('id',tourController.checkID);
 router
 // app 
 .route('/')
-.get(tourController.getAllToursById)
-.post(tourController.checkBody,tourController.createNewTour);
+.get(tourController.getAllTours)
+.post(tourController.createNewTour);
+
 
 router
 // app 
 .route('/:id')
-.get(tourController.getAllToursById)
-.patch(tourController.UpdateNewTour)
-.delete(tourController.deleteTour);
+.get(tourController.getTourById)
+.patch(tourController.updateTour)
+// .delete(tourController.deleteTour);
 
 
 module.exports=router;
