@@ -19,63 +19,80 @@ exports.createNewTour = async (req, res) => {
   }
 };
 
-exports.getAllTours = async(req, res) => {
+exports.getAllTours = async (req, res) => {
 
-  try{
-    const getAllTours= await Tour.find();
+  try {
+    const getAllTours = await Tour.find();
 
     return res.status(200).json({
-      status:'success',
-      results:getAllTours.length,
-      data:{
-        tours:getAllTours
+      status: 'success',
+      results: getAllTours.length,
+      data: {
+        tours: getAllTours
       }
     });
   }
-  catch(errr){
+  catch (errr) {
     res.status(404).json({
-      status:'fail',
-      message:err
-    })  
+      status: 'fail',
+      message: err
+    })
   }
 
 };
 
-exports.getTourById= async(req,res)=>{
+exports.getTourById = async (req, res) => {
 
-  try{
+  try {
     const tour = await Tour.findById(req.params.id);
     res.status(200).json({
-      status:'success',
-      data:{
+      status: 'success',
+      data: {
         tour
       }
     });
   }
-    catch(err){
-      res.status(404).json({
-        status:'fail',
-        message:err
-      });
-    }
+  catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err
+    });
   }
+}
 
-  exports.updateTour=async(req,res)=>{
-    try{
-      const tour = await Tour.findByIdAndUpdate(req.params.id,req.body,{new:true,runValidators:true});
-
-      res.status(201).json({
-        status:'success',
-        data:{
-          tour:'<Updated tour here>'
-        }           
-      })
-    }
-
-    catch(err){
-      res.status(404).json({
-        status:'fail',
-        message:err 
-      })
-    }
+exports.updateTour = async (req, res) => {
+  try {
+    const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    res.status(201).json({
+      status: 'success',
+      data: {
+        tour
+      }
+    })
   }
+  catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err
+    })
+  }
+}
+
+exports.deleteTour=async(req,res)=>{
+  try{
+    const tour=await Tour.findByIdAndDelete(req.params.id);
+
+    res.status(201).json({
+      status:'success',
+      data:{
+        tour:'< Tours has Been Deleted>'
+      }
+    })
+  }
+  catch(err){
+    res.status(404).json({
+      status:'fails',
+      message:err
+    })
+  }
+}
