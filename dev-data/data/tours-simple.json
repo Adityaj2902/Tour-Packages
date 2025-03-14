@@ -205,35 +205,5 @@
             "2022-01-16,10:00",
             "2022-12-12,10:00"
         ]
-    },
-    {
-        "id": 9,
-        "name": "Test Tour",
-        "duration": 10,
-        "diffculty": "easy"
-    },
-    {
-        "id": 10,
-        "name": "Test Tour",
-        "duration": 10,
-        "diffculty": "easy"
-    },
-    {
-        "id": 11,
-        "name": "Test Tour",
-        "duration": 10,
-        "diffculty": "easy"
-    },
-    {
-        "id": 12,
-        "name": "Aditya Jaiswal",
-        "diffculty": "easy",
-        "duration": 10
-    },
-    {
-        "id": 13,
-        "name": "Aditya Jaiswal",
-        "diffculty": "easy",
-        "duration": 10
     }
 ]
