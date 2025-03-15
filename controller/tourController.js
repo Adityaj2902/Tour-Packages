@@ -22,7 +22,27 @@ exports.createNewTour = async (req, res) => {
 exports.getAllTours = async (req, res) => {
 
   try {
-    const getAllTours = await Tour.find();
+    // Build Query 
+    const queryobj={...req.query};
+    const excludeFields=['page','sort','limits','fields'];
+
+    excludeFields.forEach((el)=>delete queryobj[el]);  // for each we have used to not create a new copy array
+    console.log(req.query,queryobj);
+
+    
+    const query=Tour.find(queryobj);
+
+    //EXECUTE QUERY
+    const tours=await query;
+
+    // const getAllTours = await Tour.find({
+    //   duration: '5',
+    //   difficulty: 'easy'
+    // });
+
+
+    // const getAllTours=await Tour.find().where('duration').equals(5).where('difficulty').equals('easy');
+    // console.log(req.query);
 
     return res.status(200).json({
       status: 'success',
@@ -78,21 +98,21 @@ exports.updateTour = async (req, res) => {
   }
 }
 
-exports.deleteTour=async(req,res)=>{
-  try{
-    const tour=await Tour.findByIdAndDelete(req.params.id);
+exports.deleteTour = async (req, res) => {
+  try {
+    const tour = await Tour.findByIdAndDelete(req.params.id);
 
     res.status(201).json({
-      status:'success',
-      data:{
-        tour:'< Tours has Been Deleted>'
+      status: 'success',
+      data: {
+        tour: '< Tours has Been Deleted>'
       }
     })
   }
-  catch(err){
+  catch (err) {
     res.status(404).json({
-      status:'fails',
-      message:err
+      status: 'fails',
+      message: err
     })
   }
 }
